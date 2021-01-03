@@ -1,0 +1,41 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+	<br>
+
+	<center>
+	<form action="/submit" id="textform" method="post">
+	    <br>
+	    <input type="text" name="number" placeholder="Введите номер вагона">
+		<br>
+		<input type="text" name="class" placeholder="Введите класс вагона">
+		<br>
+		<input type="text" name="sits" placeholder="Введите кол-во мест">
+		<br>
+	    <input type="submit" value="Отправить">
+	</form>
+	</center>
+
+	<br>
+
+	<a href="{{node_address}}/mine" target="_blank"><button>Request to mine</button></a>
+	<a href="/"><button>Resync</button></a>
+
+	<div style="margin: 20px;">
+
+    {% for info in book %}
+    <div class="post_box">
+	   <div class="post_box-header">
+	      <div class="name-header">Номер вагона: <i>{{info.Number}}</div>
+		  <div class="name-header">Класс: <i>{{info.Class}}</div>
+		  <div class="name-header">Колличество мест: <i>{{info.Sits}}</div>
+	      <div class="name-header"> Добавлено в <i>{{readable_time(info.timestamp)}}</i></div>
+	   </div>
+	   
+	</div>
+	{% endfor %}
+
+	
+    </div>
+{% endblock %}
